@@ -15,7 +15,20 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+        int count = 0;
+        input = input.toLowerCase();
+
+        for (int i = 0; i < input.length() - 1; i++) {
+            if ((input.charAt(i) == 'z' || input.charAt(i) == 'y')
+                    && !Character.isLetter(input.charAt(i + 1))) {
+                count++;
+            }
+        }
+        if (input.charAt(input.length() -1 ) == 'z' || input.charAt(input.length() - 1) == 'y'); {
+            count++;
+        }
+
+        return count;
     }
 
     /**
@@ -28,7 +41,21 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        String result = "";
+        for (int i = 0; i < base.length(); i++) {
+            if (i > base.length() - remove.length()) {
+                result += base.substring(i);
+                break;
+            } else {
+                String substring = base.substring(i, i + remove.length());
+                if (!(substring.equalsIgnoreCase(remove))) {
+                    result += base.charAt(i);
+                } else {
+                    i = i + remove.length() - 1;
+                }
+            }
+        }
+        return result;
     }
 
     /**
@@ -40,7 +67,26 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        int answer = input.length();
+        int not = 0;
+        int is = 0;
+
+        for (int i = 0; i < answer; i++) {
+            if(i < answer - 2) {
+                String number = input.substring(i, i + 3);
+                if (number.equals("not"))
+                    not++;
+            }
+            if (i < answer - 1) {
+                String contains = input.substring(i, i + 2);
+                if (contains.equals("is"))
+                    is++;
+            }
+        }
+        if (not == is) {
+            return true;
+        } else
+            return false;
     }
 
     /**
@@ -51,7 +97,16 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+
+        for(int i = 0; i < input.length(); i++){
+            if(input.charAt(i) == 'g'){
+                if((i-1 < 0 || input.charAt(i-1) != 'g')){
+                    if((i+1 >= input.length() || input.charAt(i+1) != 'g'))
+                        return false;
+                }
+            }
+        }
+        return true;
     }
 
 
@@ -63,6 +118,14 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        int answer = input.length();
+        int count = 0;
+
+        for (int i = 0; i < answer - 2; i++) {
+            char triple = input.charAt(i);
+            if (triple == input.charAt(i + 1) && triple == input.charAt(i + 2))
+                count++;
+        }
+        return count;
     }
 }
